@@ -199,7 +199,6 @@ const SignUp = () => {
             </form>
             <div>
                 <button className="btn btn-info" onClick={() => redirect('/registration')}>SignIn Page </button>
-                <button className="btn btn-info" onClick={() => redirect('/registration/fetch')}>Fetch Page </button>
             </div>
         </div>
     )
