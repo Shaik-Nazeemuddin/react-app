@@ -61,7 +61,7 @@ const SignUp = () => {
             return;
         }
 
-        await fetch("http://localhost:3000/submitform", {
+        await fetch("https://node-app-production-8f02.up.railway.app/submitform", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
