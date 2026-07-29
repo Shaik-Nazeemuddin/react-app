@@ -66,7 +66,7 @@ const SignUp = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
         })
-            //.then(response => response.text())
+            //.then(response => response.text( ))
             .then(async response => {
                 if (!response.ok) {
                     if (response.status === 400) {
