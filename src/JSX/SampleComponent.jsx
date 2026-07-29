@@ -1,3 +1,4 @@
+import { use } from 'react';
 import Display from './display/Display';
 import Messenger from './messenger/Messenger';
 import LoggedContextProvider from './useContext/LoggedContextProvider';
@@ -11,10 +12,44 @@ import { fetchTodos } from './routes/component/fetchWithAuth';
 import MovieCard from './movies/MovieCard';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import DisplayParent from './display/DisplayParent';
 const Movies = lazy(() => import('./movies/Movies'));
+
+
+const dataCache = new Map();
+
+function getData(url) {
+  if (!dataCache.has(url)) {
+    dataCache.set(
+      url,
+      fetch(url).then(res => res.json())
+    );
+  }
+  return dataCache.get(url);
+}
+
+export const Data = ({ url }) => {
+  const data = use(getData(url));
+  return (
+    <div className="custom-component">
+      <h2>Use (Hook) with cache - React 19</h2>
+      {data && data.map((item, index) => {
+        if (index < 10) {
+          return (
+            <div key={index} style={{ textAlign: 'left', marginLeft: '50px' }}>
+              <p>{item.id}: {item.title}</p>
+            </div>
+          )
+        }
+
+      })}
+    </div>
+  );
+}
 
 const SampleComponent = () => {
   const [movies, setMovies] = useState([]);
+  const url = 'https://jsonplaceholder.typicode.com/photos';
 
   useEffect(() => {
     getMovies();
@@ -36,9 +71,11 @@ const SampleComponent = () => {
         <LoggedContextProvider>
           <Display />
         </LoggedContextProvider>
+        <DisplayParent />
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <Suspense fallback={<h4>Loading ... </h4>}>
+          <Suspense fallback={<h4>Loading ...  </h4>}>
             <Comments fetchTodos={fetchTodos()} />
+            <Data url={url} />
           </Suspense>
         </ErrorBoundary>
         <Messenger />
