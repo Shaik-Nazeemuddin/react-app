@@ -57,7 +57,8 @@ const SampleComponent = () => {
 
   const getMovies = async () => {
     //const res  = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=98e31a0b8b4e2586697c5f2b8a90b484')
-    const res = await fetch('http://localhost:3000/movies')
+    //const res = await fetch('http://localhost:3000/movies')
+    const res = await fetch('https://node-app-production-8f02.up.railway.app/movies');
     const data = await res.json();
     //setMovies(data.results);
     setMovies(data);
