@@ -7,7 +7,7 @@ const SignUp = () => {
     const [error, setError] = useState("");
 
     const [user, setUser] = useState({
-        firstName: '',
+        firstname: '',
         lastName: '',
         email: '',
         designation: '',
@@ -87,7 +87,7 @@ const SignUp = () => {
                 }
 
                 setUser({
-                    firstName: '',
+                    firstname: '',
                     lastName: '',
                     email: '',
                     designation: '',
@@ -131,15 +131,15 @@ const SignUp = () => {
     return (
         <div className="custom-component">
             <h2>SignUp Form</h2>
-            <div>User Details : {user.firstName} {user.lastName} {user.email}  {user.mobile} {user.gender}</div>
+            <div>User Details : {user.firstname} {user.lastName} {user.email}  {user.mobile} {user.gender}</div>
             <form onSubmit={handleFormSubmit} className="main signup" autoComplete="off">
                 <h3>User SignUp</h3>
                 <p style={{ position: "relative", marginBottom: "30px" }}>Enter below details for User Registration  {error && <span style={{ color: "#e63946", fontWeight: "bold", position: "absolute", textAlign: "center", bottom: "-30px", display: "block", width: "100%" }}>( {error} )</span>} </p>
 
                 <div className="form-feilds-container">
                     <div className="form-feilds">
-                        <label htmlFor="firstName">First Name* :</label>
-                        <input type="text" id="firstName" name="firstName" onBlur={handleInputFocus} value={user.firstName} onChange={handleInputChange} className={error && !user.firstName ? "error" : ""} />
+                        <label htmlFor="firstname">First Name* :</label>
+                        <input type="text" id="firstname" name="firstname" onBlur={handleInputFocus} value={user.firstname} onChange={handleInputChange} className={error && !user.firstname ? "error" : ""} />
                     </div>
                     <div className="form-feilds">
                         <label htmlFor="lastName">Last Name* :</label>
