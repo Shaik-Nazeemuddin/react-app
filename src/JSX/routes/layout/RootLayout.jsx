@@ -45,7 +45,8 @@ const RootLayout = () => {
 
   const handleExtend = async () => {
     try {
-      const res = await fetch("http://localhost:3000/refresh-token", {
+      //const res = await fetch("http://localhost:3000/refresh-token", {
+      const res = await fetch("https://node-app-production-8f02.up.railway.app/refresh-token", {
         method: "POST",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -72,7 +73,8 @@ const RootLayout = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/validate-token", {
+      // const res = await fetch("http://localhost:3000/validate-token", {
+      const res = await fetch("https://node-app-production-8f02.up.railway.app/validate-token", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

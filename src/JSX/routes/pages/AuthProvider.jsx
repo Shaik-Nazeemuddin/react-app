@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
             }
 
             try {
-                const res = await fetch("http://localhost:3000/validate-token", {
+                const res = await fetch("https://node-app-production-8f02.up.railway.app/validate-token", {
+                    // const res = await fetch("http://localhost:3000/validate-token", {
                     headers: {
                         // Authorization: `Bearer ${token}`,
                         Authorization: `Bearer ${localStorage.getItem("token")}`
