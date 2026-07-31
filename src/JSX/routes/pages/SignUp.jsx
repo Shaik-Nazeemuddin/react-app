@@ -8,7 +8,7 @@ const SignUp = () => {
 
     const [user, setUser] = useState({
         firstname: '',
-        lastName: '',
+        lastname: '',
         email: '',
         designation: '',
         password: '',
@@ -88,7 +88,7 @@ const SignUp = () => {
 
                 setUser({
                     firstname: '',
-                    lastName: '',
+                    lastname: '',
                     email: '',
                     designation: '',
                     password: '',
@@ -131,7 +131,7 @@ const SignUp = () => {
     return (
         <div className="custom-component">
             <h2>SignUp Form</h2>
-            <div>User Details : {user.firstname} {user.lastName} {user.email}  {user.mobile} {user.gender}</div>
+            <div>User Details : {user.firstname} {user.lastname} {user.email}  {user.mobile} {user.gender}</div>
             <form onSubmit={handleFormSubmit} className="main signup" autoComplete="off">
                 <h3>User SignUp</h3>
                 <p style={{ position: "relative", marginBottom: "30px" }}>Enter below details for User Registration  {error && <span style={{ color: "#e63946", fontWeight: "bold", position: "absolute", textAlign: "center", bottom: "-30px", display: "block", width: "100%" }}>( {error} )</span>} </p>
@@ -142,8 +142,8 @@ const SignUp = () => {
                         <input type="text" id="firstname" name="firstname" onBlur={handleInputFocus} value={user.firstname} onChange={handleInputChange} className={error && !user.firstname ? "error" : ""} />
                     </div>
                     <div className="form-feilds">
-                        <label htmlFor="lastName">Last Name* :</label>
-                        <input type="text" id="lastName" name="lastName" onBlur={handleInputFocus} value={user.lastName} onChange={handleInputChange} className={error && !user.lastName ? "error" : ""} />
+                        <label htmlFor="lastname">Last Name* :</label>
+                        <input type="text" id="lastname" name="lastname" onBlur={handleInputFocus} value={user.lastname} onChange={handleInputChange} className={error && !user.lastname ? "error" : ""} />
                     </div>
                 </div>
                 <div className="form-feilds-container">
