@@ -60,7 +60,7 @@ const SignUp = () => {
             setError("Password and Re-type Password must be same");
             return;
         }
-        // await fetch("http://localhost:3000/submitform", {
+        // await fetch("http://localhost:3000/submitform", { 
         await fetch("https://node-app-production-8f02.up.railway.app/submitform", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -81,7 +81,7 @@ const SignUp = () => {
                 return await response.text();
             })
             .then(result => {
-                // console.log('Success:', result);
+                // console.log('Success:', result); 
                 if (result && result.error) {
                     return;
                 }
