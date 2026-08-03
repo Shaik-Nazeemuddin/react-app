@@ -4,7 +4,8 @@ import ShowTask from './ShowTask';
 import { useNavigate } from 'react-router-dom';
 
 const Todosapi = () => {
-    const todoUrl = 'http://localhost:4000/todo';
+    //const todoUrl = 'http://localhost:4000/todo';
+    const todoUrl = 'https://node-app-production-8f02.up.railway.app/todo';
     const [tasks, setTasks] = useState([]);
     const [dataProcessed, setDataProcessed] = useState(false);
     const [apiText] = useState('api')
