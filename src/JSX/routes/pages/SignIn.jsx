@@ -49,7 +49,7 @@ const SignIn1 = () => {
         //     setError(true);
         // }
 
-        await fetch("http://localhost:3000/users/login", {
+        await fetch("http://localhost:8080/users/login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
@@ -141,8 +141,7 @@ const SignIn = () => {
         try {
             setLoading(true);
 
-            // const response = await fetch("http://localhost:3000/users/login", { 
-            const response = await fetch("https://node-app-production-8f02.up.railway.app/users/login", {
+            const response = await fetch("http://localhost:8080/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(user),

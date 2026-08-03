@@ -7,8 +7,8 @@ const SignUp = () => {
     const [error, setError] = useState("");
 
     const [user, setUser] = useState({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
         designation: '',
         password: '',
@@ -60,8 +60,7 @@ const SignUp = () => {
             setError("Password and Re-type Password must be same");
             return;
         }
-        // await fetch("http://localhost:3000/submitform", { 
-        await fetch("https://node-app-production-8f02.up.railway.app/submitform", {
+        await fetch("http://localhost:8080/submitform", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
@@ -87,8 +86,8 @@ const SignUp = () => {
                 }
 
                 setUser({
-                    firstname: '',
-                    lastname: '',
+                    firstName: '',
+                    lastName: '',
                     email: '',
                     designation: '',
                     password: '',
@@ -131,19 +130,19 @@ const SignUp = () => {
     return (
         <div className="custom-component">
             <h2>SignUp Form</h2>
-            <div>User Details : {user.firstname} {user.lastname} {user.email}  {user.mobile} {user.gender}</div>
+            <div>User Details : {user.firstName} {user.lastName} {user.email}  {user.mobile} {user.gender}</div>
             <form onSubmit={handleFormSubmit} className="main signup" autoComplete="off">
                 <h3>User SignUp</h3>
                 <p style={{ position: "relative", marginBottom: "30px" }}>Enter below details for User Registration  {error && <span style={{ color: "#e63946", fontWeight: "bold", position: "absolute", textAlign: "center", bottom: "-30px", display: "block", width: "100%" }}>( {error} )</span>} </p>
 
                 <div className="form-feilds-container">
                     <div className="form-feilds">
-                        <label htmlFor="firstname">First Name* :</label>
-                        <input type="text" id="firstname" name="firstname" onBlur={handleInputFocus} value={user.firstname} onChange={handleInputChange} className={error && !user.firstname ? "error" : ""} />
+                        <label htmlFor="firstName">First Name* :</label>
+                        <input type="text" id="firstName" name="firstName" onBlur={handleInputFocus} value={user.firstName} onChange={handleInputChange} className={error && !user.firstName ? "error" : ""} />
                     </div>
                     <div className="form-feilds">
-                        <label htmlFor="lastname">Last Name* :</label>
-                        <input type="text" id="lastname" name="lastname" onBlur={handleInputFocus} value={user.lastname} onChange={handleInputChange} className={error && !user.lastname ? "error" : ""} />
+                        <label htmlFor="lastName">Last Name* :</label>
+                        <input type="text" id="lastName" name="lastName" onBlur={handleInputFocus} value={user.lastName} onChange={handleInputChange} className={error && !user.lastName ? "error" : ""} />
                     </div>
                 </div>
                 <div className="form-feilds-container">
