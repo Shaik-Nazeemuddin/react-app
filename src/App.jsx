@@ -42,7 +42,7 @@ const App = () => {
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactLayout />} >
             <Route path='info' element={<ContactInfo />} />
-            <Route path='form' element={<ContactForm />} />
+            <Route index element={<ContactForm />} />
           </Route>
           <Route path='products' element={<ProductsLayout />} errorElement={<Error />}>
             <Route index element={<Products />} loader={ProductsLoader} />

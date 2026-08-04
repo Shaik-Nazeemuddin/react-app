@@ -276,6 +276,7 @@ h2.movieheading:before {
 .main input[type="text"],
 .main input[type="email"],
 .main input[type="password"],
+.main textarea,
 .main select {
   width: 100%;
   margin-bottom: 15px;

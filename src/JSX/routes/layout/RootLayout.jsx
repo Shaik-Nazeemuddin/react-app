@@ -164,6 +164,13 @@ const RootLayout = () => {
         </div>
       )}
       < Outlet />
+      {isAuthenticated && (
+        <footer className="footer">
+          <div style={{
+            marginTop: '32px', padding: '10px 0', color: '#040404', textAlign: 'left'
+          }}>© 2026, All rights reserved</div>
+        </footer>
+      )}
     </>
   )
 }
