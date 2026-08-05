@@ -1,16 +1,16 @@
 import React from 'react'
 
 const DisplayChild = ({ generateAPI }) => {
-    const [count, setCount] = React.useState(0);
+    const [count, setCount] = React.useState({ value: 0 });
 
     const handleIncrement = () => {
-        setCount((prev) => prev + 1)
+        setCount((prev) => ({ value: prev.value + 1 }))
     }
     const handleDecrement = () => {
-        setCount((prev) => prev - 1)
+        setCount((prev) => ({ value: prev.value - 1 }))
     }
     const handleReset = () => {
-        setCount(0);
+        setCount({ value: 0 });
     }
 
     React.useEffect(() => {
@@ -21,9 +21,9 @@ const DisplayChild = ({ generateAPI }) => {
             handleReset
         })
         return () => { generateAPI(null) }
-    }, [count, generateAPI])
+    }, [count.value, generateAPI])
 
-    return (<p>Child Count: {count}</p>)
+    return (<p>Child Count: {count.value}</p>)
 }
 
 export default DisplayChild
