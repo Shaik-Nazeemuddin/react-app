@@ -167,7 +167,14 @@ button[disabled] {
   border: 1px solid #bce8f1;
   margin: 10px 10px;
   padding: 5px 7px;
+  background-color: #ffffff;
+  color: #213547;
 }
+
+.task-form input:focus {
+  border: 2px solid #213547;
+}
+
 
 .sr-only {
   position: absolute;
