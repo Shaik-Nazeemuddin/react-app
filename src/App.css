@@ -280,6 +280,15 @@ h2.movieheading:before {
   font-weight: bold;
 }
 
+/* default input styles */
+input[type="text"],
+select,
+textarea {
+  background-color: #ffffff;
+  color: #213547;
+  border: 1px solid #bce8f1;
+}
+
 .main input[type="text"],
 .main input[type="email"],
 .main input[type="password"],
@@ -310,7 +319,7 @@ h2.movieheading:before {
 .main input[type="url"]:autofill,
 .main textarea:autofill {
   -webkit-text-fill-color: #333333 !important;
-  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  box-shadow: 0 0 0px 1000px #eeeeee inset !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
