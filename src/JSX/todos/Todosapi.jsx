@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Todosapi = () => {
     const todoUrl = 'https://node-app-production-8f02.up.railway.app/todo';
     const [tasks, setTasks] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [dataProcessed, setDataProcessed] = useState(false);
     const [apiText] = useState('api')
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Todosapi = () => {
             const response = await fetch(todoUrl);
             const data = await response.json();
             setTasks(data);
+            setLoading(false);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -87,7 +89,9 @@ const Todosapi = () => {
         <div className="custom-component">
             <h2>API Task List</h2>
             <AddTask addTask={handleAdd} />
-            <ShowTask tasks={tasks} removeTask={handleRemove} showText={apiText} onLoopComplete={handleLoopComplete} />
+            {loading ? <h3>Loading tasks...</h3> :
+                <ShowTask tasks={tasks} removeTask={handleRemove} showText={apiText} onLoopComplete={handleLoopComplete} />
+            }
             {dataProcessed && <button className="btn btn-info" onClick={() => { navigate('/todos') }}>Todos</button>}
         </div>
     )
