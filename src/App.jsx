@@ -30,6 +30,7 @@ import Error from './JSX/routes/pages/Error';
 
 import { AuthProvider } from './JSX/routes/pages/AuthProvider';
 import ProtectedRoute from './JSX/routes/ProtectedRoute';
+import PublicRoutes from './JSX/routes/PublicRoutes';
 
 const App = () => {
 
@@ -58,12 +59,14 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route path='registration' element={< RegistrationLayout />} >
-          <Route index element={<  SignIn />} />
-          <Route path='signup' element={< SignUp />} />
-          <Route path='success' element={< SignUpSuccess />} />
-          <Route path='failure' element={< SigninFailure />} />
-          <Route path='signupfailure' element={< SignUpFailure />} />
+        <Route element={<PublicRoutes />}>
+          <Route path='registration' element={< RegistrationLayout />} >
+            <Route index element={<  SignIn />} />
+            <Route path='signup' element={< SignUp />} />
+            <Route path='success' element={< SignUpSuccess />} />
+            <Route path='failure' element={< SigninFailure />} />
+            <Route path='signupfailure' element={< SignUpFailure />} />
+          </Route>
         </Route>
 
         {/* <Route path='userdetailsrtk' element={<UserDetailsRTK />} /> */}
