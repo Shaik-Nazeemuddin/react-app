@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
     // ✅ wait until validation completes
     if (loading) {
-        return <div>Loading...</div>;
+        return <div></div>;
     }
 
 
