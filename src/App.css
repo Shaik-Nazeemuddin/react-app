@@ -64,6 +64,11 @@ nav a:hover {
   color: #888;
 }
 
+.btn-top-bottom {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .btn-info {
   /*#33b6ea;*/
   color: #fff;

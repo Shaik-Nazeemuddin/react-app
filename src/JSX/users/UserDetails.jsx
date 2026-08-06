@@ -70,7 +70,7 @@ const UserDetails = () => {
                 <div className="align-right">
                     <DeleteAll onDeleteAll={deleteAllUsers} />
                 </div>
-                <button className="btn btn-info" onClick={() => navigate('rtk')}>Details-RTK</button>
+                <button className="btn btn-info btn-top-bottom" onClick={() => navigate('rtk')}>Details-RTK</button>
             </div>
         </div>
     )

@@ -74,8 +74,8 @@ const UserDetailsRTK = () => {
                         <h3>List of all Users & Students</h3>
                     </div>
                     <div className="content-top-right">
-                        <button className="btn  btn-info btn-space btn-grad" onClick={() => handleAddUser(chance.name())}>Add User<span className="item-count">{userData.length > 0 && userData.length}</span></button>
-                        <button className="btn  btn-info btn-grad" onClick={() => handleAddStudent(chance.name())}>Add Student<span className="item-count">{studentsData.length > 0 && studentsData.length}</span></button>
+                        <button className="btn  btn-info btn-space btn-grad btn-top-bottom" onClick={() => handleAddUser(chance.name())}>Add User<span className="item-count">{userData.length > 0 && userData.length}</span></button>
+                        <button className="btn  btn-info btn-grad btn-top-bottom" onClick={() => handleAddStudent(chance.name())}>Add Student<span className="item-count">{studentsData.length > 0 && studentsData.length}</span></button>
                     </div>
                 </div>
                 <ul>
@@ -96,7 +96,7 @@ const UserDetailsRTK = () => {
                 <div className="align-right">
                     <DeleteAll onDeleteAll={handleDeleteAll} />
                 </div>
-                <button className="btn btn-info" onClick={() => navigate('/userdetails')}>UserDetails</button>
+                <button className="btn btn-info btn-top-bottom" onClick={() => navigate('/userdetails')}>UserDetails</button>
             </div>
         </div>
     )

@@ -26,9 +26,9 @@ const DisplayParent = () => {
                         <p>Child Count in Parent: {childData && childData?.count.value}</p>
                     </div>
                 )}
-                <button type='button' className="btn btn-info btn-space" onClick={Increment} >Child Increment</button>
-                <button type='button' className="btn btn-info btn-space" onClick={Decrement} disabled={childData && childData.count.value === 0}>Child Decrement</button>
-                <button type='button' className="btn btn-info" onClick={Reset} >Child Reset</button>
+                <button type='button' className="btn btn-info btn-space btn-top-bottom" onClick={Increment} >Child Increment</button>
+                <button type='button' className="btn btn-info btn-space btn-top-bottom" onClick={Decrement} disabled={childData && childData.count.value === 0}>Child Decrement</button>
+                <button type='button' className="btn btn-info btn-top-bottom" onClick={Reset} >Child Reset</button>
             </div>
             <DisplayChild generateAPI={setChildData} />
         </div>
