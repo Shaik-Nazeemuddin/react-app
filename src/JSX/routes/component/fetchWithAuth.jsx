@@ -41,6 +41,6 @@ export async function fetchTodos() {
         }
         return await res.json();
     } catch (err) {
-        console.log(err.message)
+        (err.message)
     }
 }

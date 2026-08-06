@@ -4,22 +4,14 @@ import ShowTask from './ShowTask';
 import { useNavigate } from 'react-router-dom';
 
 const Todosapi = () => {
-    //const todoUrl = 'http://localhost:4000/todo';
     const todoUrl = 'https://node-app-production-8f02.up.railway.app/todo';
     const [tasks, setTasks] = useState([]);
     const [dataProcessed, setDataProcessed] = useState(false);
     const [apiText] = useState('api')
     const navigate = useNavigate();
 
-    // const getTodoData = async () => {
-    //     const res = await fetch(todoUrl);
-    //     const data = await res.json();
-    //     setTasks(data);
-    // }
 
-    // useEffect(() => {
-    //     getTodoData();
-    // }, [])
+
 
     const fetchData = async () => {
         try {
@@ -37,12 +29,12 @@ const Todosapi = () => {
 
     const handleLoopComplete = () => {
         setDataProcessed(true);
-        console.log('Loop completed in ShowTaskComponent! from TODOS-API');
+
     };
 
     const handleRemove = async (e) => {
         const itemId = parseInt(e.target.id);
-        console.log(itemId)
+
         try {
             const response = await fetch(`${todoUrl}/${itemId}`, {
                 method: 'DELETE',
@@ -50,8 +42,7 @@ const Todosapi = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            //setTasks(tasks?.filter((task, index) => index !== itemId));
-            //console.log('Item deleted successfully!');
+
             fetchData(); // Re-fetch data to update the list
 
         } catch (error) {
@@ -66,7 +57,7 @@ const Todosapi = () => {
             e.target.focus();
             const addTask = { taskName: task };
             const todoIndex = tasks.findIndex((todo) => (task).includes(todo.taskName));
-            console.log(todoIndex);
+
             if (todoIndex !== -1) {
                 tasks[todoIndex] = { ...addTask };
                 setTasks([...tasks]);

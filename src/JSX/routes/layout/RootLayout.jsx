@@ -66,7 +66,6 @@ const RootLayout = () => {
   const validateToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      console.log("No token found → invalid");
       setToken("null");  //added
       setLoggedInUser("null");
       return false;

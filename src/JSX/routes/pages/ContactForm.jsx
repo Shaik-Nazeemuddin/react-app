@@ -58,7 +58,6 @@ const ContactForm = () => {
         return await response.text();
       })
       .then(result => {
-        // console.log('Success:', result); 
         if (result && result.error) {
           return;
         }

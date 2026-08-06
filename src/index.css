@@ -487,10 +487,17 @@ header.header-logo-center .custom-logo span:after {
 /* Hamburger */
 .menu-toggle {
   display: none;
-  background: none;
+  background-color: #ffffff;
+  color: #213547;
   border: none;
   cursor: pointer;
 }
+
+button.menu-toggle:focus,
+button.menu-toggle:focus-visible {
+  outline: none;
+}
+
 
 
 

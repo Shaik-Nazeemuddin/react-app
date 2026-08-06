@@ -39,15 +39,7 @@ const SignUp = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        // const formData = {
-        //     firstName,
-        //     lastName,
-        //     email,
-        //     password,
-        //     repassword,
-        //     mobile,
-        //     gender,
-        // };
+
 
         const isFormEmpty = Object.values(user).some(field => field.trim() === '');
 
@@ -60,7 +52,7 @@ const SignUp = () => {
             setError("Password and Re-type Password must be same");
             return;
         }
-        // await fetch("http://localhost:3000/submitform", { 
+
         await fetch("https://node-app-production-8f02.up.railway.app/submitform", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -73,15 +65,13 @@ const SignUp = () => {
                         const message = await response.text();
                         setError(message);
                         return { error: true, message };
-                        // throw new Error("Bad Request: Please check your input data.");
                     }
                     return Promise.reject(new Error(`HTTP error! Status: ${response.status}`));
-                    // throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 return await response.text();
             })
             .then(result => {
-                // console.log('Success:', result); 
+                //  
                 if (result && result.error) {
                     return;
                 }
@@ -103,26 +93,7 @@ const SignUp = () => {
                 signUpFailure();
                 console.error('Error:', error);
             });
-        // try {
-        //     const response = await fetch('"http://localhost:3000/submitform', {
-        //         method: 'POST', // Specify the method
-        //         headers: {
-        //             'Content-Type': 'application/json', // Indicate JSON data is sent
-        //         },
-        //         body: JSON.stringify(user), // Convert the JS object to a JSON string
-        //     });
 
-        //     if (!response.ok) {
-        //         throw new Error('Network response was not ok');
-        //     }
-
-        //     const result = await response.text();
-        //     console.log('Success:', result);
-        //     alert('Form submitted successfully!');
-        // } catch (error) {
-        //     console.error('Error:', error);
-        //     alert('Failed to submit form.');
-        // }
 
     }
 

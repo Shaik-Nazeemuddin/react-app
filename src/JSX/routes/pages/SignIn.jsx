@@ -117,7 +117,6 @@ const SignIn = () => {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setUser((prev) => ({ ...prev, [name]: value }));
-        // setError(""); // clear error msg while typing
         setErrors((prev) => ({ ...prev, [name]: false, message: "" })); // clear specific field error
     };
 
@@ -128,20 +127,14 @@ const SignIn = () => {
 
         if (newErrors.email || newErrors.password) {
             newErrors.message = "All fields are required";
-            console.log("Validation Errors:", newErrors);
             setErrors(newErrors);
             return;
         }
 
-        // if (!user.email || !user.password) {
-        //     setError("All fields are required");
-        //     return;
-        // }
 
         try {
             setLoading(true);
 
-            // const response = await fetch("http://localhost:3000/users/login", { 
             const response = await fetch("https://node-app-production-8f02.up.railway.app/users/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -153,7 +146,6 @@ const SignIn = () => {
                 throw new Error("Login Failed");
             }
 
-            // const result = await response.text();
             const data = await response.json();
 
             // ✅ Store token
@@ -167,10 +159,8 @@ const SignIn = () => {
 
         } catch (err) {
             if (err.message === 'Failed to fetch') {
-                // setError("Network Error")
                 setErrors({ email: false, password: false, message: "Network Error" });
             } else {
-                // setError(err.message);
                 setErrors({ email: false, password: false, message: `${err.message}` });
             }
             setUser({ email: "", password: "" });

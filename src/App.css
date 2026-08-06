@@ -284,6 +284,27 @@ h2.movieheading:before {
   box-sizing: border-box;
   border: 2px solid #ddd;
   border-radius: 5px;
+  background-color: #ffffff;
+  color: #213547;
+}
+
+.main input[type="text"]:focus,
+.main input[type="email"]:focus,
+.main input[type="password"]:focus,
+.main textarea:focus,
+.main select:focus {
+  border: 2px solid #213547;
+}
+
+.main input[type="text"]:autofill,
+.main input[type="email"]:autofill,
+.main input[type="password"]:autofill,
+.main input[type="tel"]:autofill,
+.main input[type="url"]:autofill,
+.main textarea:autofill {
+  -webkit-text-fill-color: #333333 !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .main button[type="submit"] {

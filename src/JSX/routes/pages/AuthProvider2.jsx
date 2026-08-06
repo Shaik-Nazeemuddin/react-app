@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const validateToken = async () => {
             const token = localStorage.getItem("token");
-            console.log("Validating token:", token);
+
 
             if (!token) {
                 setIsAuthenticated(false);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
         return <div>Loading...</div>;
     }
 
-    console.log("Final Auth State:", isAuthenticated);
+
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

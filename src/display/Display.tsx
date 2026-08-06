@@ -54,16 +54,16 @@ const Display = () => {
 
   const handleClick = () => {
     (message === 'Component Default Msg') ? setMessage("Component Modified Msg") : setMessage("Component Default Msg")
-    console.log("handled in App Parent Click")
+
   }
 
   const handleChildData = (datafromChild: any) => {
     setParentsData(datafromChild);
-    console.log('Setting parents data after received from child:', datafromChild);
+
   }
 
   const parentMethodCall = () => {
-    console.log("Executed Parent Method -  parentMethodCall")
+
   }
 
   return (
@@ -103,8 +103,8 @@ const Display = () => {
 }
 
 const B = (props: any) => {
-  console.log("B's Component")
-  console.log(props);
+
+
   //const propsArray = Object.entries(props).filter(([key, value]) => (typeof value !== 'function'));
 
   return (
@@ -125,26 +125,5 @@ const B = (props: any) => {
     </div>
   );
 }
-
-// const C = (props:any) => {
-//   console.log("C's Component")
-//   console.log(props);
-
-//   return (
-//     <div>
-//       <h2>ChildC Components prop </h2>
-//       {/* {propItems.map((item, index) => (
-//         <p key={index}>{index} {item} - {props[item]}</p>
-//       ))} */}
-
-//       {/* {Object.entries(props).map(([key, value], index) => {
-//         if (typeof value !== 'function') {
-//           return <p key={index + 1}>{index + 1}) {key} = {value} </p>;
-//         }
-//       })} */}
-//       <button type="button" className="btn btn-info"  onClick={props.onChandleClick}> Trigger Parent Event </button>
-//     </div>
-//   )
-// }
 
 export default Display;

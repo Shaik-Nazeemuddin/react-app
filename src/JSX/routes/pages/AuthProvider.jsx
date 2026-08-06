@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         const validateToken = async () => {
             const token = localStorage.getItem("token");
             const user = localStorage.getItem("user");
-            // console.log("Validating Existing token:", token);
+            // 
 
 
             if (!token) {
@@ -25,9 +25,7 @@ export const AuthProvider = ({ children }) => {
 
             try {
                 const res = await fetch("https://node-app-production-8f02.up.railway.app/validate-token", {
-                    // const res = await fetch("http://localhost:3000/validate-token", {
                     headers: {
-                        // Authorization: `Bearer ${token}`,
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
                 });
@@ -35,7 +33,6 @@ export const AuthProvider = ({ children }) => {
                 if (res.ok) {
                     const result = await res.json();
                     setIsAuthenticated(result.valid);
-                    //setLoggedInUser(user);
                     setToken(token)
                 } else {
                     setIsAuthenticated(false);
@@ -53,17 +50,12 @@ export const AuthProvider = ({ children }) => {
 
     // ✅ wait until validation completes
     if (loading) {
-        //return <div>Loading...</div>;
-        return <div></div>;
+        return <div>Loading...</div>;
     }
 
-    console.log("Final Auth (state): ", isAuthenticated);
-    console.log("Final Token (value): ", token);
-    console.log("LoggedIn User: ", loggedInUser);
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, token, setToken, loggedInUser, setLoggedInUser }}>
-            {/* <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, token, setToken }}> */}
             {children}
         </AuthContext.Provider>
     );

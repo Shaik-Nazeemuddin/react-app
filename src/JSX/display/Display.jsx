@@ -9,14 +9,6 @@ const Display = () => {
   const [parentsData, setParentsData] = useState('');
   const [message, setMessage] = useState('Component Default Msg');
 
-  // const handleIncrement = () => {
-  //   dispatch({ type: 'INCREMENT' });
-  // };
-
-  // const handleSetUser = () => {
-  //   dispatch({ type: 'SET_USER', payload: { name: 'John Doe' } });
-  // };
-
   const styles = {
     main: {
       padding: '20px',
@@ -58,16 +50,16 @@ const Display = () => {
     } else {
       setMessage('Component Default Msg')
     }
-    console.log("handled in App Parent Click")
+
   }
 
   const handleChildData = (datafromChild) => {
     setParentsData(datafromChild);
-    console.log('Setting parents data after received from child:', datafromChild);
+
   }
 
   const parentMethodCall = () => {
-    console.log("Executed Parent Method -  parentMethodCall")
+
   }
 
   return (
@@ -108,9 +100,7 @@ const Display = () => {
 }
 
 const B = (props) => {
-  console.log("B's Component")
-  console.log(props);
-  //const propsArray = Object.entries(props).filter(([key, value]) => (typeof value !== 'function'));
+
 
   return (
     <div>
@@ -126,21 +116,18 @@ const B = (props) => {
       ))}
 
       <button type="button" className="btn btn-info" bcount={props.value} onClick={props.onBhandleClick}>Trigger Parent Event</button>
-      {/* <C  bcount = {props.count} bmsg = {props.msg} onChandleClick = {props.onBhandleClick} /> */}
+
     </div>
   );
 }
 
 const C = (props) => {
-  console.log("C's Component")
-  console.log(props);
+
+
 
   return (
     <div>
       <h2>ChildC Components prop </h2>
-      {/* {propItems.map((item, index) => (
-        <p key={index}>{index} {item} - {props[item]}</p>
-      ))} */}
 
       {Object.entries(props).map(([key, value], index) => {
         if (typeof value !== 'function') {

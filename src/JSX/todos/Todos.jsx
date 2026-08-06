@@ -29,7 +29,7 @@ const Todos = () => {
 
   const handleLoopComplete = () => {
     setDataProcessed(true);
-    console.log('Loop completed in ShowTaskComponent! from TODOS');
+
   };
 
   const handleRemove = (e) => {

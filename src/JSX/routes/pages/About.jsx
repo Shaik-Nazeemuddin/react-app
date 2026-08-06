@@ -10,7 +10,7 @@ const About = () => {
   useEffect(() => {
     if (count === 0) return;
     timerIdRef.current = setInterval(() => {
-      console.log(timerIdRef.current);
+
       setCount(prev => prev - 1);
     }, 3000);
 
