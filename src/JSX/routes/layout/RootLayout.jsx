@@ -9,20 +9,19 @@ import ScrollToTop from "../component/ScrollToTop";
 const RootLayout = () => {
 
   const { isAuthenticated, setIsAuthenticated, token, setToken, loggedInUser, setLoggedInUser } = useAuth();
-  // const { isAuthenticated, setIsAuthenticated, token, setToken } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [hasExpired, setHasExpired] = useState(false);
-  const timerRef = useRef(null); // keep track of popup timer
+  const timerRef = useRef(null);
   const autoCloseRef = useRef(null);
 
-  // 🔑 Schedule popup before expiry
+
   const schedulePopup = (token) => {
     if (!token) return;
     const decoded = jwtDecode(token);
     if (decoded.exp) {
       const expiryTime = decoded.exp * 1000;
       const now = Date.now();
-      const timeUntilPopup = expiryTime - now - 5 * 60 * 1000; // 5 min before expiry
+      const timeUntilPopup = expiryTime - now - 5 * 60 * 1000;
 
       if (timerRef.current) clearTimeout(timerRef.current);
 
@@ -38,7 +37,6 @@ const RootLayout = () => {
 
   const openPopup = () => {
     setHasExpired(true);
-    // Auto-close session if no response in 50 seconds
     autoCloseRef.current = setTimeout(() => {
       logout();
     }, 2 * 60 * 1000);
@@ -46,7 +44,6 @@ const RootLayout = () => {
 
   const handleExtend = async () => {
     try {
-      //const res = await fetch("http://localhost:3000/refresh-token", {
       const res = await fetch("https://node-app-production-8f02.up.railway.app/refresh-token", {
         method: "POST",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -54,10 +51,9 @@ const RootLayout = () => {
       const data = await res.json();
       if (data.token) {
         localStorage.setItem("token", data.token);
-        // setToken(data.token);
-        setHasExpired(false); // close popup
-        clearTimeout(autoCloseRef.current); // cancel auto logout
-        schedulePopup(data.token); // ✅ reset timer with new token
+        setHasExpired(false);
+        clearTimeout(autoCloseRef.current);
+        schedulePopup(data.token);
       }
     } catch (err) {
       logout();
@@ -67,13 +63,12 @@ const RootLayout = () => {
   const validateToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      setToken("null");  //added
+      setToken("null");
       setLoggedInUser("null");
       return false;
     }
 
     try {
-      // const res = await fetch("http://localhost:3000/validate-token", {
       const res = await fetch("https://node-app-production-8f02.up.railway.app/validate-token", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -96,7 +91,7 @@ const RootLayout = () => {
       localStorage.removeItem("token");
       setToken("null");
       setLoggedInUser("null");
-      setHasExpired(false); // hide popup
+      setHasExpired(false);
     }
   }
 
@@ -121,7 +116,7 @@ const RootLayout = () => {
           <span><Link to="/"><img src={logo} style={{ width: 85 }} title="Logo" /></Link></span>
         </div>
 
-        {/* Hamburger Button */}
+
         {isAuthenticated && token && (
           <button
             className="menu-toggle"
@@ -131,7 +126,7 @@ const RootLayout = () => {
           </button>
         )}
 
-        {/* Navigation */}
+
         {isAuthenticated && token ? (
           <nav className={`nav ${isOpen ? "open" : ""}`}>
             <li><NavLink to="/" onClick={handleCloseMenu}> Home </NavLink></li>
