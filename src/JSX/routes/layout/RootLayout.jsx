@@ -4,6 +4,7 @@ import logo from '../../../assets/brandlogo.png';
 import { useAuth } from "../pages/AuthProvider";
 import { LogOut, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import ScrollToTop from "../component/ScrollToTop";
 
 const RootLayout = () => {
 
@@ -144,6 +145,7 @@ const RootLayout = () => {
         ) : (
           <Navigate to="/registration" replace />
         )}
+        <ScrollToTop />
       </header>
 
       {isAuthenticated && token && loggedInUser && (
