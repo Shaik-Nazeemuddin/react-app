@@ -40,7 +40,7 @@ const About = () => {
             <strong>Node.js</strong>
           </b>
         </h3>
-        <ul style={{ padding: 0 }}>
+        <ul style={{ padding: 0, listStyle: none }}>
           <li value="1"><span>Designed for server-side development, allowing the creation of fast and scalable network applications.</span></li>
           <li value="2"><span>Enables developers to use JavaScript for both client-side and server-side scripting, unifying the development stack.</span></li>
           <li value="3"><span>Commonly used for building RESTful APIs, microservices, real-time applications, and server-side rendered applications.</span></li></ul>
@@ -49,7 +49,7 @@ const About = () => {
             <strong>React.js</strong>
           </b>
         </h3>
-        <ul style={{ padding: 0 }}>
+        <ul style={{ padding: 0, listStyle: none }}>
           <li value="1"><span>Designed for building user interfaces, particularly single-page applications where you want a fast and responsive UI.</span></li>
           <li value="2"><span>Uses a virtual DOM to optimize rendering performance and provide a better user experience.</span></li>
           <li value="3"><span>Commonly used for creating reusable UI components and managing application state.</span></li>
