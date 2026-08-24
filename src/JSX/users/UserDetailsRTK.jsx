@@ -113,7 +113,7 @@ const UserDetailsRTK = () => {
                 {error && <h4>{error}</h4>}
                 <ul>
                     {registeredusers.map((user,index) => {
-                        return(<li key={user.firstname} style={{minHeight:'46px'}}>
+                        return(<li key={user.firstname} style={{minHeight:'46px',textAlign:'left'}}>
                             <span>{index+1}. {user.firstname} {(user.firstname === user.lastname) ? '' : user.lastname} ( <b>RegisteredUser</b> )</span>
                         </li>)
                     })}
