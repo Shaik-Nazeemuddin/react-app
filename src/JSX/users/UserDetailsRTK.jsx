@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useEffect} from 'react';
 import { Chance } from 'chance';
 import './userDetails.css';
 import close from '../../assets/delete.png';
@@ -10,6 +11,7 @@ import { addUser, deleteUser } from '../../reduxtoolkitstore/slices/UserSlice';
 import { addStudent, removeStudent } from '../../reduxtoolkitstore/slices/StudentSlice';
 // import { addStudent, removeStudent, removeAllStudent, removeAll } from '../../reduxtoolkitstore/slices/StudentSlice';
 import { clearAll } from '../../reduxtoolkitstore/actions';
+import { fetchUsers } from "../../reduxtoolkitstore/slices/RegisteredUserSlice";
 
 const defaultBranches = [
     { name: "CSE" },
@@ -24,6 +26,13 @@ const UserDetailsRTK = () => {
     const userData = useSelector(state => state.users);
     const studentsData = useSelector(state => state.students);
     const chance = new Chance();
+    const {registeredusers,loading,error} = useSelector((state) => state.registeredusers);
+    
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
+
+
 
     // adding a user 
     const handleAddUser = (user) => {
@@ -81,22 +90,34 @@ const UserDetailsRTK = () => {
                 <ul>
                     {userData.map((item, index) => {
                         return (<li key={index}>
-                            <span>{item.name} ( <b>User</b> )</span>
+                            <span>{index+1}. {item.name} ( <b>User</b> )</span>
                             <img src={close} id={index} alt="" onClick={handleDeleteUser} />
                         </li>)
-                    })}
-                    {studentsData.map((item) => {
+                    })} 
+                    {studentsData.map((item,index) => {
                         return (<li key={item.id}>
-                            <span>{item.name} ( <b>Student</b> )</span>
+                            <span>{index+1}. {item.name} ( <b>Student</b> )</span>
                             <img src={close} id={item.id} alt="" onClick={handleDeleteStudent} />
                         </li>)
-                    })}
-
+                    })} 
                 </ul>
                 <div className="align-right">
                     <DeleteAll onDeleteAll={handleDeleteAll} />
                 </div>
                 <button className="btn btn-info btn-top-bottom" onClick={() => navigate('/userdetails')}>UserDetails</button>
+                <div className="content-top-left">
+                    <h2>List of all Registered Users </h2>
+                    <h3 style={{ marginBottom:'50px'}}>Display Users using (Async Thunk)</h3>
+                </div>
+                {loading && <h4>Loading...</h4>}
+                {error && <h4>{error}</h4>}
+                <ul>
+                    {registeredusers.map((user,index) => {
+                        return(<li key={user.firstname} style={{minHeight:'46px'}}>
+                            <span>{index+1}. {user.firstname} {(user.firstname === user.lastname) ? '' : user.lastname} ( <b>RegisteredUser</b> )</span>
+                        </li>)
+                    })}
+                </ul>
             </div>
         </div>
     )
