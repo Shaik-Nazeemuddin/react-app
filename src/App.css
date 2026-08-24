@@ -285,6 +285,14 @@ h2.movieheading:before {
   font-weight: bold;
 }
 
+.green-logo {
+  color: #6cac00;
+}
+
+.blue-logo {
+  color: #00b8c0;
+}
+
 /* default input styles */
 input[type="text"],
 select,

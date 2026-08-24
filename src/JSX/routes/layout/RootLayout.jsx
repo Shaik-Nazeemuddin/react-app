@@ -111,7 +111,7 @@ const RootLayout = () => {
 
   return (
     <>
-      <header className={isAuthenticated && token ? "" : "header-logo-center"}>
+      <header className={isAuthenticated && token && loggedInUser ? "" : "header-logo-center"}>
         <div className="custom-logo">
           <span><Link to="/"><img src={logo} style={{ width: 85 }} title="Logo" /></Link></span>
         </div>
@@ -145,7 +145,9 @@ const RootLayout = () => {
 
       {isAuthenticated && token && loggedInUser && (
         <div className="loggeduser">
-          [ Welcome - {loggedInUser} ]
+          <span className='green-logo'>[ </span>
+           Welcome - {loggedInUser} 
+          <span className='blue-logo'> ]</span>
         </div>
       )}
 
@@ -159,7 +161,9 @@ const RootLayout = () => {
           </div>
         </div>
       )}
-      < Outlet />
+      <div style={{ minHeight: "65vh"}}>
+        <Outlet/>
+      </div>
       {isAuthenticated && (
         <footer className="footer">
           <div style={{
