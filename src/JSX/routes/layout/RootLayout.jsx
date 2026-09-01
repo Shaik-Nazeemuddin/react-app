@@ -140,9 +140,7 @@ const RootLayout = () => {
         ) : (
           <Navigate to="/registration" replace />
         )}
-        <ScrollToTop />
       </header>
-
       {isAuthenticated && token && loggedInUser && (
         <div className="loggeduser">
           <span className='green-logo'>[ </span>
@@ -164,6 +162,7 @@ const RootLayout = () => {
       <div style={{ minHeight: "65vh"}}>
         <Outlet/>
       </div>
+      <ScrollToTop />
       {isAuthenticated && (
         <footer className="footer">
           <div style={{

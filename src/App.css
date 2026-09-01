@@ -365,6 +365,24 @@ textarea {
   margin: 25px 0;
 }
 
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #17a2b8;
+  border: 1px dashed #17a2b8;
+  cursor: pointer;
+  z-index: 1000;
+  padding: 5px 10px;
+  outline:none;
+}
+.scroll-to-top-button:focus {
+  border: 1px dashed #404040;
+  outline: none;
+}
+
 @media (max-width: 768px) {
 
   .main.signup,
@@ -384,5 +402,12 @@ textarea {
 
   nav a {
     font-weight: bold;
+  }
+
+  .scroll-to-top-button{
+    bottom:5px;
+    right:5px;
+    border:none;
+    outline:none;
   }
 }
