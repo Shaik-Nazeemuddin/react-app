@@ -1,42 +1,26 @@
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider,Navigate  } from 'react-router-dom';
 //import { BrowserRouter, Link, NavLink, Routes, Outlet} from 'react-router-dom';
 import './App.css';
-//import SampleComponent from './JSX/SampleComponent';
-//import About from './JSX/routes/pages/About';
-//import TodoLayout from './JSX/routes/layout/TodoLayout';
-//import Todos from './JSX/todos/Todos';
-//import Todosapi from './JSX/todos/Todosapi';
 
-// import RootLayout from './JSX/routes/layout/RootLayout';
-// import ContactLayout from './JSX/routes/layout/ContactLayout';
-// import ContactInfo from './JSX/routes/pages/ContactInfo';
-// import ContactForm from './JSX/routes/pages/ContactForm';
-// import NotFound from './JSX/routes/pages/NotFound';
-// import ProductsLayout from './JSX/routes/layout/ProductsLayout';
-//import Products from './JSX/routes/pages/Products';
 import { ProductsLoader } from './JSX/routes/pages/ProductsLoader';
-//import ProductDetails from './JSX/routes/pages/ProductDetails';
+import Products  from './JSX/routes/pages/Products';
+
 import { ProductDetailsLoader } from './JSX/routes/pages/ProductDetailsLoader';
-//import UserDetailsLayout from './JSX/routes/layout/UserDetailsLayout';
-//import UserDetails from './JSX/users/UserDetails';
-//import UserDetailsRTK from './JSX/users/UserDetailsRTK';
-//import RegistrationLayout from './JSX/routes/layout/RegistrationLayout';
-// import SignUp from './JSX/routes/pages/SignUp';
-// import SignIn from './JSX/routes/pages/SignIn';
-// import SignUpSuccess from './JSX/routes/pages/SignUpSuccess';
-// import SignUpFailure from './JSX/routes/pages/SignUpFailure';
-// import SigninFailure from './JSX/routes/pages/SigninFailure';
-// import Error from './JSX/routes/pages/Error';
+import ProductDetails  from './JSX/routes/pages/ProductDetails';
 
 import { AuthProvider } from './JSX/routes/pages/AuthProvider';
 import ProtectedRoute from './JSX/routes/ProtectedRoute';
 import PublicRoutes from './JSX/routes/PublicRoutes';
 
-import { lazy } from 'react';
-const SampleComponent = lazy(() => import('./JSX/SampleComponent'));
+import { lazy, useEffect, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
+const SampleComponent = lazy(() => {
+  return new Promise(resolve => { setTimeout(() => resolve(import("./JSX/SampleComponent")), 5000) })
+});
 const About = lazy(() => import('./JSX/routes/pages/About'));
-const Products = lazy(() => import('./JSX/routes/pages/Products'));
-const ProductDetails = lazy(() => import('./JSX/routes/pages/ProductDetails'));
+// const Products = lazy(() => import('./JSX/routes/pages/Products'));
+// const ProductDetails = lazy(() => import('./JSX/routes/pages/ProductDetails'));
 const Todos = lazy(() => import('./JSX/todos/Todos'));
 const Todosapi = lazy(() => import('./JSX/todos/Todosapi'));
 const UserDetails = lazy(() => import('./JSX/users/UserDetails'));
@@ -55,7 +39,24 @@ const SignIn = lazy(() => import('./JSX/routes/pages/SignIn'));
 const SignUpSuccess = lazy(() => import('./JSX/routes/pages/SignUpSuccess'));
 const SignUpFailure = lazy(() => import('./JSX/routes/pages/SignUpFailure'));
 const SigninFailure = lazy(() => import('./JSX/routes/pages/SigninFailure'));
-const Error = lazy(() => import('./JSX/routes/pages/Error'));
+const ErrorPage = lazy(() => import('./JSX/routes/pages/ErrorPage'));
+
+const ShowError = ({ error }) => {
+  return (
+    <>
+      <h1>Error in Component</h1>
+      <p>{error.message}</p>
+    </>
+  )
+}
+
+
+const ErrorComponent = () => {
+  useEffect(() => {
+    throw new Error("something went wrong while rendering");
+  }, [])
+  return null;
+}
 
 
 const App = () => {
@@ -63,17 +64,24 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />} hydrateFallbackElement={<div>Loading...</div>}>
-
-        <Route element={<ProtectedRoute showNav={false} />} >
-          <Route index element={<SampleComponent />} />
+        <Route element={<ProtectedRoute showNav={false} />} replace>
+          <Route index element={
+            <Suspense fallback={<h2> Page is Loading...</h2>}>
+              <SampleComponent />
+            </Suspense>
+          } />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactLayout />} >
             <Route path='info' element={<ContactInfo />} />
             <Route index element={<ContactForm />} />
           </Route>
-          <Route path='products' element={<ProductsLayout />} errorElement={<Error />}>
+          {/* <Route path='products' element={<ProductsLayout />} errorElement={<ErrorPage />}>
             <Route index element={<Products />} loader={ProductsLoader} />
             <Route path=':id' element={<ProductDetails />} loader={ProductDetailsLoader} />
+          </Route> */}
+          <Route path='products' element={<ProductsLayout />} errorElement={<ErrorPage />}>
+            <Route index element={<Products />} />
+            <Route path=':id' element={<ProductDetails />} />
           </Route>
           <Route path='todos' element={<TodoLayout />} >
             <Route index element={<Todos />} />
@@ -85,13 +93,19 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route element={<PublicRoutes />}>
+        <Route element={<PublicRoutes />} replace>
           <Route path='registration' element={< RegistrationLayout />} >
             <Route index element={<  SignIn />} />
             <Route path='signup' element={< SignUp />} />
             <Route path='success' element={< SignUpSuccess />} />
             <Route path='failure' element={< SigninFailure />} />
             <Route path='signupfailure' element={< SignUpFailure />} />
+            <Route path='error' element={
+              <ErrorBoundary FallbackComponent={ShowError}>
+                < ErrorComponent />
+              </ErrorBoundary>
+            }
+            />
           </Route>
         </Route>
 

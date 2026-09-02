@@ -1,10 +1,30 @@
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const ProductDetails = () => {
-  const productDetails = useLoaderData();
+  // const productDetails = useLoaderData();
   const navigation = useNavigate();
   const { id } = useParams();
+ 
+  const [productDetails, setProductDetails] = useState([]);
+
+  useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const res = await fetch('https://node-app-production-8f02.up.railway.app/movies/' + (id && id));
+          if (!res.ok) {
+            throw new Error('Failed to fetch products');
+          }
+          const data = await res.json();
+          setProductDetails(data);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+  
+      fetchProducts();
+    }, [id]);
 
   return (
     <div className='custom-component extrapadding'>
