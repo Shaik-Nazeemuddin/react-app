@@ -3,10 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider,Na
 import './App.css';
 
 import { ProductsLoader } from './JSX/routes/pages/ProductsLoader';
-import Products  from './JSX/routes/pages/Products';
-
 import { ProductDetailsLoader } from './JSX/routes/pages/ProductDetailsLoader';
-import ProductDetails  from './JSX/routes/pages/ProductDetails';
 
 import { AuthProvider } from './JSX/routes/pages/AuthProvider';
 import ProtectedRoute from './JSX/routes/ProtectedRoute';
@@ -19,8 +16,8 @@ const SampleComponent = lazy(() => {
   return new Promise(resolve => { setTimeout(() => resolve(import("./JSX/SampleComponent")), 5000) })
 });
 const About = lazy(() => import('./JSX/routes/pages/About'));
-// const Products = lazy(() => import('./JSX/routes/pages/Products'));
-// const ProductDetails = lazy(() => import('./JSX/routes/pages/ProductDetails'));
+const Products = lazy(() => import('./JSX/routes/pages/Products'));
+const ProductDetails = lazy(() => import('./JSX/routes/pages/ProductDetails'));
 const Todos = lazy(() => import('./JSX/todos/Todos'));
 const Todosapi = lazy(() => import('./JSX/todos/Todosapi'));
 const UserDetails = lazy(() => import('./JSX/users/UserDetails'));

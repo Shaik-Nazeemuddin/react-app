@@ -8,7 +8,7 @@ const ProductDetails = () => {
   const { id } = useParams();
  
   const [productDetails, setProductDetails] = useState([]);
-
+ 
   useEffect(() => {
       const fetchProducts = async () => {
         try {

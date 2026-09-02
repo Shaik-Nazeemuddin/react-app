@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom"; 
 
 const Products = () => {
   // const productsData = useLoaderData();
@@ -22,7 +22,7 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  
+   
   return (
     <div className="custom-component">
       <h2>List of all products</h2>
