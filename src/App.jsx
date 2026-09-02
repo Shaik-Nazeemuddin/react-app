@@ -12,9 +12,7 @@ import PublicRoutes from './JSX/routes/PublicRoutes';
 import { lazy, useEffect, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-const SampleComponent = lazy(() => {
-  return new Promise(resolve => { setTimeout(() => resolve(import("./JSX/SampleComponent")), 5000) })
-});
+const SampleComponent = lazy(() => import("./JSX/SampleComponent"));
 const About = lazy(() => import('./JSX/routes/pages/About'));
 const Products = lazy(() => import('./JSX/routes/pages/Products'));
 const ProductDetails = lazy(() => import('./JSX/routes/pages/ProductDetails'));
@@ -62,11 +60,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />} hydrateFallbackElement={<div>Loading...</div>}>
         <Route element={<ProtectedRoute showNav={false} />} replace>
-          <Route index element={
-            <Suspense fallback={<h2> Page is Loading...</h2>}>
-              <SampleComponent />
-            </Suspense>
-          } />
+         <Route index element={<SampleComponent />} />
           <Route path='about' element={<About />} />
           <Route path='contact' element={<ContactLayout />} >
             <Route path='info' element={<ContactInfo />} />
