@@ -375,7 +375,7 @@ textarea {
   border: 1px dashed #17a2b8;
   cursor: pointer;
   z-index: 1000;
-  padding: 5px 10px;
+  padding: 5px 10px 0px;
   outline:none;
 }
 .scroll-to-top-button:focus {
