@@ -19,8 +19,8 @@ const Display = () => {
   };
 
   const user = {
-    name: 'Hedy Lamarr',
-    imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+    name: 'Muhammed Arham',
+    imageUrl: 'src/assets/Arham.png',
     imageSize: 90,
   };
 
