@@ -72,13 +72,9 @@ const App = () => {
             <Route path='info' element={<ContactInfo />} />
             <Route index element={<ContactForm />} />
           </Route>
-          {/* <Route path='products' element={<ProductsLayout />} errorElement={<ErrorPage />}>
+          <Route path='products' element={<ProductsLayout />} errorElement={<ErrorPage />}>
             <Route index element={<Products />} loader={ProductsLoader} />
             <Route path=':id' element={<ProductDetails />} loader={ProductDetailsLoader} />
-          </Route> */}
-          <Route path='products' element={<ProductsLayout />} errorElement={<ErrorPage />}>
-            <Route index element={<Products />} />
-            <Route path=':id' element={<ProductDetails />} />
           </Route>
           <Route path='todos' element={<TodoLayout />} >
             <Route index element={<Todos />} />
@@ -109,6 +105,7 @@ const App = () => {
         {/* <Route path='userdetailsrtk' element={<UserDetailsRTK />} /> */}
         {/* <Route path='todosapi' element={<Todosapi />} /> */}
         <Route path='*' element={<NotFound />} />
+        <Route path='error' element={<ErrorPage />} />
       </Route>
     )
   )
