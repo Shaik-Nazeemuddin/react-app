@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DisplayB from './DisplayB';
 import DisplayE from './DisplayE';
+import arham from '../../assets/Arham.png';
 import LoginContextProvider from '../useContext/LoginContextProvider';
 import MyComponent from './MyComponent';
 
@@ -20,7 +21,7 @@ const Display = () => {
 
   const user = {
     name: 'Muhammed Arham',
-    imageUrl: '/src/assets/Arham.png',
+    imageUrl: arham,
     imageSize: 90,
   };
 
