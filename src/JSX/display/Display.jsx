@@ -20,7 +20,7 @@ const Display = () => {
 
   const user = {
     name: 'Muhammed Arham',
-    imageUrl: 'src/assets/Arham.png',
+    imageUrl: '/src/assets/Arham.png',
     imageSize: 90,
   };
 
