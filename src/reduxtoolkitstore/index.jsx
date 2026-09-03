@@ -13,12 +13,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import users from "./slices/UserSlice";
 import students from './slices/StudentSlice';
 import registeredusers from "./slices/RegisteredUserSlice";
+import contacts from "./slices/ContactSlice";
 
 const store = configureStore({
     reducer: {
         users,
         students,
-        registeredusers
+        registeredusers,
+        contacts
     }
 });
 

@@ -12,6 +12,7 @@ import { addStudent, removeStudent } from '../../reduxtoolkitstore/slices/Studen
 // import { addStudent, removeStudent, removeAllStudent, removeAll } from '../../reduxtoolkitstore/slices/StudentSlice';
 import { clearAll } from '../../reduxtoolkitstore/actions';
 import { fetchUsers } from "../../reduxtoolkitstore/slices/RegisteredUserSlice";
+import { fetchContacts } from "../../reduxtoolkitstore/slices/ContactSlice";
 
 const defaultBranches = [
     { name: "CSE" },
@@ -27,10 +28,12 @@ const UserDetailsRTK = () => {
     const studentsData = useSelector(state => state.students);
     const chance = new Chance();
     const {users,loading,error} = useSelector(state => state.registeredusers);
+    const {data: contactsData, loading: contactsLoading, error: contactsError} = useSelector(state => state.contacts);
     //const {registeredusers : registerusers,users,students} = useSelector(state => state);
     
     useEffect(() => {
         dispatch(fetchUsers());
+        dispatch(fetchContacts());
     }, [dispatch]);
 
 
@@ -116,6 +119,21 @@ const UserDetailsRTK = () => {
                     {users.map((user,index) => {
                         return(<li key={user.firstname} style={{minHeight:'46px',textAlign:'left'}}>
                             <span>{index+1}. {user.firstname} {(user.firstname === user.lastname) ? '' : user.lastname} ( <b>RegisteredUser</b> )</span>
+                        </li>)
+                    })}
+                </ul>
+                <div className="content-top-left">
+                    <h2>List of all Contacts </h2>
+                    <h3 style={{ marginBottom:'50px'}}>Display Contacts using (Async Thunk)</h3>
+                </div>
+                {contactsLoading && <h4>Loading...</h4>}
+                {contactsError && <h4>{contactsError}</h4>}
+                <ul style={{display:'block',width:'100%'}}>
+                    {contactsData.map((contact, index) => {
+                        return(<li key={contact.email} style={{minHeight:'46px',textAlign:'left',justifyContent:'left'}}>
+                            <span>{index+1}. {contact.firstname} {(contact.firstname === contact.lastname) ? '' : contact.lastname} ( <b>Contact</b> )</span>
+                            <span style={{ padding: '0 2px' }}>, {contact.email}</span>
+                            <span style={{ padding: '0 2px' }}>, {contact.mobile}</span>
                         </li>)
                     })}
                 </ul>
