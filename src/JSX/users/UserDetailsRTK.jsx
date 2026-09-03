@@ -26,7 +26,8 @@ const UserDetailsRTK = () => {
     const userData = useSelector(state => state.users);
     const studentsData = useSelector(state => state.students);
     const chance = new Chance();
-    const {registeredusers,loading,error} = useSelector((state) => state.registeredusers);
+    const {users,loading,error} = useSelector(state => state.registeredusers);
+    //const {registeredusers : registerusers,users,students} = useSelector(state => state);
     
     useEffect(() => {
         dispatch(fetchUsers());
@@ -112,7 +113,7 @@ const UserDetailsRTK = () => {
                 {loading && <h4>Loading...</h4>}
                 {error && <h4>{error}</h4>}
                 <ul>
-                    {registeredusers.map((user,index) => {
+                    {users.map((user,index) => {
                         return(<li key={user.firstname} style={{minHeight:'46px',textAlign:'left'}}>
                             <span>{index+1}. {user.firstname} {(user.firstname === user.lastname) ? '' : user.lastname} ( <b>RegisteredUser</b> )</span>
                         </li>)

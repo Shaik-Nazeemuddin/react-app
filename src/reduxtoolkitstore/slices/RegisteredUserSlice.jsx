@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUsers = createAsyncThunk(
-  "users/fetchUsers",
+  "registeredusers/fetchUsers",
   async () => {
     const response = await fetch(
       "https://node-app-production-8f02.up.railway.app/users"
@@ -12,9 +12,9 @@ export const fetchUsers = createAsyncThunk(
 );
 
 const RegisteredUserSlice = createSlice({
-    name: 'registeredusers',
+    name: 'registered',
     initialState: {
-        registeredusers: [],
+        users: [],
         loading: false,
         error: null,
     },
@@ -27,7 +27,7 @@ const RegisteredUserSlice = createSlice({
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.registeredusers = action.payload;
+        state.users = action.payload;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
