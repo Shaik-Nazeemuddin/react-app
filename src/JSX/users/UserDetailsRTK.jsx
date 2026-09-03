@@ -130,7 +130,7 @@ const UserDetailsRTK = () => {
                 {contactsError && <h4>{contactsError}</h4>}
                 <ul style={{display:'block',width:'100%'}}>
                     {contactsData.map((contact, index) => {
-                        return(<li key={contact.email} style={{minHeight:'46px',textAlign:'left',justifyContent:'left'}}>
+                        return(<li key={contact.email} style={{minHeight:'46px',textAlign:'left',display:'block',width:'100%'}}>
                             <span>{index+1}. {contact.firstname} {(contact.firstname === contact.lastname) ? '' : contact.lastname} ( <b>Contact</b> )</span>
                             <span style={{ padding: '0 2px' }}>, {contact.email}</span>
                             <span style={{ padding: '0 2px' }}>, {contact.mobile}</span>
