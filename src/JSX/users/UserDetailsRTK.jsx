@@ -4,11 +4,12 @@ import { useEffect} from 'react';
 import { Chance } from 'chance';
 import './userDetails.css';
 import close from '../../assets/delete.png';
+import { SquarePen } from "lucide-react";
 
 import DeleteAll from "./DeleteAll";
-import { addUser, deleteUser } from '../../reduxtoolkitstore/slices/UserSlice';
+import { addUser, deleteUser,updateUser } from '../../reduxtoolkitstore/slices/UserSlice';
 // import { addUser, deleteUser, deleteAllUsers } from '../../reduxtoolkitstore/slices/UserSlice';
-import { addStudent, removeStudent } from '../../reduxtoolkitstore/slices/StudentSlice';
+import { addStudent, removeStudent,updateStudent } from '../../reduxtoolkitstore/slices/StudentSlice';
 // import { addStudent, removeStudent, removeAllStudent, removeAll } from '../../reduxtoolkitstore/slices/StudentSlice';
 import { clearAll } from '../../reduxtoolkitstore/actions';
 import { fetchUsers } from "../../reduxtoolkitstore/slices/RegisteredUserSlice";
@@ -63,6 +64,18 @@ const UserDetailsRTK = () => {
         dispatch(removeStudent(studentIndex));
     }
 
+    //updating a user
+    const handleUpdateUser = (index) => {
+        const updatedUser = { name: chance.name() };
+        dispatch(updateUser({ index, user: updatedUser }));
+    }
+
+    //updating a student object
+    const handleUpdateStudent = (index) => {
+        const updatedStudent = { id: studentsData[index].id, name: chance.name(), department: getRandomBranchName(defaultBranches).name };
+        dispatch(updateStudent({ index, student: updatedStudent }));
+    }
+
     // delete all users and students
     const handleDeleteAll = () => {
         // dispatch(deleteAllUsers());
@@ -95,13 +108,19 @@ const UserDetailsRTK = () => {
                     {userData.map((item, index) => {
                         return (<li key={index}>
                             <span>{index+1}. {item.name} ( <b>User</b> )</span>
-                            <img src={close} id={index} alt="" onClick={handleDeleteUser} />
+                            <div>
+                                <SquarePen size={30} onClick={() => handleUpdateUser(index)} style={{ marginRight: '10px',cursor: 'pointer',color:'#6cac00' }} />
+                                <img src={close} id={index} alt="" onClick={handleDeleteUser} />
+                            </div>
                         </li>)
                     })} 
                     {studentsData.map((item,index) => {
                         return (<li key={item.id}>
                             <span>{index+1}. {item.name} ( <b>Student</b> )</span>
-                            <img src={close} id={item.id} alt="" onClick={handleDeleteStudent} />
+                            <div>
+                                <SquarePen size={30} onClick={() => handleUpdateStudent(index)} style={{ marginRight: '10px',cursor: 'pointer',color:'#6cac00' }} />
+                                <img src={close} id={item.id} alt="" onClick={handleDeleteStudent} />
+                            </div>
                         </li>)
                     })} 
                 </ul>

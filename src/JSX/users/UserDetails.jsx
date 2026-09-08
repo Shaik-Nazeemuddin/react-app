@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Chance } from 'chance';
 import './userDetails.css';
 import close from '../../assets/delete.png';
+import { SquarePen } from "lucide-react";
 
 import DeleteAll from "./DeleteAll";
 
@@ -31,6 +32,12 @@ const UserDetails = () => {
         const id = parseInt(e.target.id);
         const updatedUsers = users.filter((user, index) => index !== id);
         setUsers([...updatedUsers]);
+    }
+
+    const updateUser = (index, newName) => {
+        const updatedUsers = [...users];
+        updatedUsers[index] = { name: newName };
+        setUsers(updatedUsers);
     }
 
     const deleteAllUsers = () => {
@@ -62,8 +69,8 @@ const UserDetails = () => {
                 <ul>
                     {users.map((user, index) => {
                         return (defaultUsers.find(defaultuser => defaultuser.name === user.name))
-                            ? <li key={index}><span>{user.name} ( <b>Default-User</b> )</span><img src={close} id={index} alt="" onClick={deleteUser} /></li>
-                            : <li key={index}>{user.name}<img src={close} id={index} alt="" onClick={deleteUser} /></li>
+                            ? <li key={index}><span>{user.name} ( <b>Default-User</b> )</span><div><SquarePen size={30} onClick={() => updateUser(index, getRandomUser())} style={{ marginRight: '10px',cursor: 'pointer',color:'#6cac00' }} /><img src={close} id={index} alt="" onClick={deleteUser} /></div></li>
+                            : <li key={index}>{user.name}<div><SquarePen size={30} onClick={() => updateUser(index, getRandomUser())} style={{ marginRight: '10px',cursor: 'pointer',color:'#6cac00' }} /><img src={close} id={index} alt="" onClick={deleteUser} /></div></li>
 
                     })}
                 </ul>
