@@ -7,7 +7,16 @@ export const fetchContacts = createAsyncThunk(
       "https://node-app-production-8f02.up.railway.app/contacts"
     );
 
-    return response.json();
+    //return response.json();
+    const contacts = await response.json();
+
+    // Keep only required fields
+    return contacts.map(({ firstname,lastname, email, mobile }) => ({
+      firstname,
+      lastname,
+      email,
+      mobile
+    }));
   }
 );
 

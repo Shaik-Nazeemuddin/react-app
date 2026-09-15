@@ -7,7 +7,15 @@ export const fetchUsers = createAsyncThunk(
       "https://node-app-production-8f02.up.railway.app/users"
     );
 
-    return response.json();
+    const users = await response.json();
+
+    // Keep only required fields
+    return users.map(({ firstname,lastname, email, mobile }) => ({
+      firstname,
+      lastname,
+      email,
+      mobile
+    }));
   }
 );
 
