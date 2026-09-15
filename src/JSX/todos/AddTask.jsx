@@ -6,7 +6,7 @@ const AddTask = ({ addTask,editTask }) => {
   const [eTask,setETask] = useState("");
 
   useEffect(() => {
-    setNewItemValue(editTask?.taskName);
+    setNewItemValue(editTask?.taskName || "");
     setETask(editTask);
   },[editTask])
 

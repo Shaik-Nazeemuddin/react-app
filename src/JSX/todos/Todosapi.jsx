@@ -53,34 +53,31 @@ const Todosapi = () => {
     };
 
     const handleAdd = async (e) => {
-        if (e.key === 'Enter' && e.target.value !== "") {
-            const task = e.target.value.trim().toLowerCase();
-            e.target.value = "";
-            e.target.focus();
-            const addTask = { taskName: task };
-            const todoIndex = tasks.findIndex((todo) => (task).includes(todo.taskName));
 
-            if (todoIndex !== -1) {
-                tasks[todoIndex] = { ...addTask };
-                setTasks([...tasks]);
-            } else {
-                await fetch(`${todoUrl}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(addTask)
+        const task = e.target.taskName;
+        const addTask = { taskName: task };
+        const todoIndex = tasks.findIndex((todo) => (task).includes(todo.taskName));
+
+        if (todoIndex !== -1) {
+            tasks[todoIndex] = addTask;
+            setTasks([...tasks]);
+        } else {
+            await fetch(`${todoUrl}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(addTask)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Success:', result);
                 })
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log('Success:', result);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                fetchData(); // Re-fetch data to update the list
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            fetchData(); // Re-fetch data to update the list
 
-            }
         }
     };
 
